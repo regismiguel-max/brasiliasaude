@@ -175,27 +175,6 @@
     }
     
     /* Estilo Qualicorp */
-    .circle-card {
-      border-radius: 50%;
-      border: 2px solid #1a237e;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      width: 280px;
-      height: 280px;
-      margin: 0 auto;
-      transition: all 0.3s ease;
-    }
-    
-    .circle-card:hover {
-      box-shadow: 0 10px 25px rgba(26, 35, 126, 0.15);
-      transform: translateY(-5px);
-    }
-    
     .yellow-divider {
       width: 2px;
       background-color: #f9b233;
@@ -289,6 +268,191 @@
       font-size: 0.875rem;
       font-weight: 400;
     }
+    
+    /* Estilos para o formulário de simulação */
+    .form-step {
+      display: none;
+    }
+    
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    .form-progress {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .progress-step {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #dee2e6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #6c757d;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .progress-step.active {
+      background-color: #1a237e;
+      color: white;
+    }
+    
+    .progress-step.completed {
+      background-color: #4caf50;
+      color: white;
+    }
+    
+    .progress-line {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #dee2e6;
+      z-index: 0;
+    }
+    
+    .progress-line-active {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      height: 2px;
+      background-color: #4caf50;
+      z-index: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .plan-card {
+      border: 2px solid #dee2e6;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .plan-card:hover {
+      border-color: #1a237e;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(26, 35, 126, 0.15);
+    }
+    
+    .plan-card.selected {
+      border-color: #1a237e;
+      background-color: rgba(26, 35, 126, 0.05);
+    }
+    
+    .plan-card.selected::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 24px;
+      height: 24px;
+      background-color: #4caf50;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    
+    .form-control:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #1a237e;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(26, 35, 126, 0.25);
+    }
+    
+    .form-label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    .form-error {
+      color: #dc3545;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+    }
+    
+    .dependent-card {
+      border: 1px solid #dee2e6;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    
+    .remove-dependent {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #dc3545;
+      cursor: pointer;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+    
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+    
+    .summary-total {
+      font-weight: 700;
+      color: #1a237e;
+      font-size: 1.25rem;
+    }
+    
+    /* Animação de loading */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body class="text-gray-800 bg-white">
@@ -307,7 +471,7 @@
           <a href="#rede" class="nav-link hover:text-primary-light font-medium text-primary">Rede Credenciada</a>
           <a href="#carencias" class="nav-link hover:text-primary-light font-medium text-primary">Carências</a>
           <a href="#aderir" class="nav-link hover:text-primary-light font-medium text-primary">Quem Pode Aderir</a>
-          <a href="#contratar" class="quali-btn">Contratar</a>
+          <a href="#simulacao" class="quali-btn">Simular Contratação</a>
         </nav>
         
         <!-- Botão menu mobile -->
@@ -323,7 +487,7 @@
           <a href="#rede" class="text-primary py-2 px-4 hover:bg-neutral-lightest rounded">Rede Credenciada</a>
           <a href="#carencias" class="text-primary py-2 px-4 hover:bg-neutral-lightest rounded">Carências</a>
           <a href="#aderir" class="text-primary py-2 px-4 hover:bg-neutral-lightest rounded">Quem Pode Aderir</a>
-          <a href="#contratar" class="quali-btn text-center">Contratar</a>
+          <a href="#simulacao" class="quali-btn text-center">Simular Contratação</a>
         </div>
       </div>
     </div>
@@ -334,9 +498,9 @@
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary animate-fadeIn">Com a <span class="text-secondary">Brasília Saúde</span>, você tem escolha</h2>
       <p class="text-lg md:text-xl mb-8 text-gray-600 max-w-2xl mx-auto">Planos acessíveis com ampla rede hospitalar e carência reduzida para você e sua família</p>
-      <a href="#contratar" class="quali-btn text-lg px-8 py-3">
-        <i class="fas fa-check-circle mr-2"></i>
-        Contratar Agora
+      <a href="#simulacao" class="quali-btn text-lg px-8 py-3">
+        <i class="fas fa-calculator mr-2"></i>
+        Simular Contratação
       </a>
     </div>
   </section>
@@ -397,53 +561,116 @@
         <p class="text-gray-600 max-w-2xl mx-auto">Oferecemos opções que se adaptam às suas necessidades e orçamento, com cobertura completa e rede hospitalar de qualidade.</p>
       </div>
       
-      <div class="flex flex-wrap justify-center gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Plano Delta -->
-        <div class="circle-card">
-          <div class="text-center">
-            <h3 class="text-2xl font-bold text-primary mb-1">Planos de Saúde para</h3>
-            <p class="text-3xl font-bold text-primary mb-3">VOCÊ E SUA FAMÍLIA</p>
-            <div class="mb-2">
-              <p class="text-sm text-gray-600">A partir de</p>
-              <p class="price-tag">R$ 324,90<span class="price-period">/mês</span></p>
-            </div>
-            <p class="text-xs text-gray-500 mb-4">Delta - Enfermaria</p>
-            <a href="#contratar" class="quali-btn w-full">
-              Quero Contratar
-            </a>
+        <div class="plan-card highlight-plan">
+          <div class="text-center mb-4">
+            <h3 class="text-xl font-bold text-primary mb-1">Planos de Saúde para</h3>
+            <p class="text-2xl font-bold text-primary mb-3">VOCÊ E SUA FAMÍLIA</p>
           </div>
+          
+          <div class="mb-4 text-center">
+            <p class="text-sm text-gray-600">A partir de</p>
+            <p class="price-tag">R$ 324,90<span class="price-period">/mês</span></p>
+            <p class="text-xs text-gray-500">Delta - Enfermaria</p>
+          </div>
+          
+          <div class="space-y-2 mb-6">
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Cobertura nacional para urgências e emergências</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Consultas em todas especialidades médicas</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Exames simples e complexos</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Internações em enfermaria</span>
+            </div>
+          </div>
+          
+          <a href="#simulacao" class="quali-btn w-full block text-center" data-plan="delta">
+            Simular Contratação
+          </a>
         </div>
         
         <!-- Plano Ômega -->
-        <div class="circle-card">
-          <div class="text-center">
-            <h3 class="text-2xl font-bold text-primary mb-1">Planos de Saúde para</h3>
-            <p class="text-3xl font-bold text-primary mb-3">PROFISSIONAIS</p>
-            <div class="mb-2">
-              <p class="text-sm text-gray-600">A partir de</p>
-              <p class="price-tag">R$ 355,90<span class="price-period">/mês</span></p>
-            </div>
-            <p class="text-xs text-gray-500 mb-4">Ômega - Enfermaria Plus</p>
-            <a href="#contratar" class="quali-btn w-full">
-              Quero Contratar
-            </a>
+        <div class="plan-card">
+          <div class="text-center mb-4">
+            <h3 class="text-xl font-bold text-primary mb-1">Planos de Saúde para</h3>
+            <p class="text-2xl font-bold text-primary mb-3">PROFISSIONAIS</p>
           </div>
+          
+          <div class="mb-4 text-center">
+            <p class="text-sm text-gray-600">A partir de</p>
+            <p class="price-tag">R$ 355,90<span class="price-period">/mês</span></p>
+            <p class="text-xs text-gray-500">Ômega - Enfermaria Plus</p>
+          </div>
+          
+          <div class="space-y-2 mb-6">
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Todos os benefícios do plano Delta</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Acesso a hospitais premium (parcial)</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Cobertura em viagem até R$ 50.000</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Exames especializados inclusos</span>
+            </div>
+          </div>
+          
+          <a href="#simulacao" class="quali-btn w-full block text-center" data-plan="omega">
+            Simular Contratação
+          </a>
         </div>
         
         <!-- Plano Sigma -->
-        <div class="circle-card">
-          <div class="text-center">
-            <h3 class="text-2xl font-bold text-primary mb-1">Planos de Saúde</h3>
-            <p class="text-3xl font-bold text-primary mb-3">EMPRESARIAL</p>
-            <div class="mb-2">
-              <p class="text-sm text-gray-600">A partir de</p>
-              <p class="price-tag">R$ 469,90<span class="price-period">/mês</span></p>
-            </div>
-            <p class="text-xs text-gray-500 mb-4">Sigma - Apartamento</p>
-            <a href="#contratar" class="quali-btn w-full">
-              Quero Contratar
-            </a>
+        <div class="plan-card">
+          <div class="text-center mb-4">
+            <h3 class="text-xl font-bold text-primary mb-1">Planos de Saúde</h3>
+            <p class="text-2xl font-bold text-primary mb-3">EMPRESARIAL</p>
           </div>
+          
+          <div class="mb-4 text-center">
+            <p class="text-sm text-gray-600">A partir de</p>
+            <p class="price-tag">R$ 469,90<span class="price-period">/mês</span></p>
+            <p class="text-xs text-gray-500">Sigma - Apartamento</p>
+          </div>
+          
+          <div class="space-y-2 mb-6">
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Todos os benefícios do plano Ômega</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Acesso completo a hospitais premium</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Cobertura em viagem até R$ 100.000</span>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+              <span class="text-sm">Maternidade premium inclusa</span>
+            </div>
+          </div>
+          
+          <a href="#simulacao" class="quali-btn w-full block text-center" data-plan="sigma">
+            Simular Contratação
+          </a>
         </div>
       </div>
       
@@ -584,409 +811,283 @@
       </div>
     </section>
 
-    <!-- Seção de telemedicina -->
-    <section class="bg-neutral-lightest py-12 rounded-2xl">
+    <!-- Seção de simulação e contratação -->
+    <section id="simulacao" class="scroll-mt-20 bg-neutral-lightest rounded-2xl p-8 md:p-12">
       <div class="text-center mb-12">
-        <span class="inline-block px-4 py-1 bg-blue-100 text-primary rounded-full text-sm font-medium mb-3">Atendimento Online</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Telemedicina</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Atendimento médico online 24 horas por dia, 7 dias por semana, sem sair de casa.</p>
+        <span class="inline-block px-4 py-1 bg-blue-100 text-primary rounded-full text-sm font-medium mb-3">Contratação Online</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Simule e Contrate seu Plano</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">Preencha os dados abaixo para simular e contratar seu plano de saúde de forma rápida e segura.</p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-headset text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Concierge de Saúde</h3>
-          <p class="text-gray-600 text-sm">Esclarecimento de dúvidas e auxílio no agendamento de consultas e exames.</p>
+      <!-- Formulário de simulação -->
+      <div class="max-w-4xl mx-auto">
+        <!-- Barra de progresso -->
+        <div class="form-progress mb-8">
+          <div class="progress-line"></div>
+          <div class="progress-line-active" id="progress-line"></div>
+          <div class="progress-step active" data-step="1">1</div>
+          <div class="progress-step" data-step="2">2</div>
+          <div class="progress-step" data-step="3">3</div>
+          <div class="progress-step" data-step="4">4</div>
         </div>
         
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-laptop-medical text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Pronto Atendimento Online</h3>
-          <p class="text-gray-600 text-sm">Pronto Atendimento online 24x7 com time de saúde composto por enfermeiras e médicos da família.</p>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-heartbeat text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Programas de Cuidado</h3>
-          <p class="text-gray-600 text-sm">Acompanhamento personalizado para condições crônicas como diabetes, hipertensão e obesidade.</p>
-        </div>
-      </div>
-      
-      <div class="text-center mt-8">
-        <p class="text-gray-600 italic">Nossa telemedicina atua de forma proativa no monitoramento da saúde dos beneficiários, seguindo protocolos das linhas de cuidado. O serviço é gratuito, sem cobrança de coparticipação.</p>
-      </div>
-    </section>
-
-    <!-- Seção de rede credenciada -->
-    <section id="rede" class="scroll-mt-20">
-      <div class="text-center mb-12">
-        <span class="inline-block px-4 py-1 bg-blue-100 text-primary rounded-full text-sm font-medium mb-3">Hospitais e Clínicas</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Grande rede de hospitais e laboratórios de excelência</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Contamos com os melhores hospitais e clínicas do Distrito Federal para garantir seu atendimento de qualidade.</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-hospital text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Hospital Brasília</h3>
-          <p class="text-gray-600 text-sm">Águas Claras e Lago Sul</p>
-          <div class="mt-3 flex justify-center gap-2">
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Sigma</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Ômega</span>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-hospital-alt text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Hospital Anchieta</h3>
-          <p class="text-gray-600 text-sm">Ceilândia e Taguatinga</p>
-          <div class="mt-3 flex justify-center gap-2">
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Delta</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Ômega</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Sigma</span>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-hospital-user text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Hospital Daher</h3>
-          <p class="text-gray-600 text-sm">Lago Sul</p>
-          <div class="mt-3 flex justify-center gap-2">
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Ômega</span>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Sigma</span>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition-all">
-          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 relative">
-            <i class="fas fa-stethoscope text-primary text-2xl"></i>
-            <span class="absolute top-0 right-0 w-4 h-4 bg-secondary rounded-full"></span>
-          </div>
-          <h3 class="font-semibold text-primary mb-2">Sírio-Libanês</h3>
-          <p class="text-gray-600 text-sm">Todas as unidades</p>
-          <div class="mt-3 flex justify-center gap-2">
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Sigma</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mt-8 text-center">
-        <button id="show-more-hospitals" class="quali-btn-outline">
-          <i class="fas fa-plus-circle mr-2"></i>
-          Ver rede completa
-        </button>
-      </div>
-    </section>
-
-    <!-- Seção de carências -->
-    <section id="carencias" class="scroll-mt-20 bg-neutral-lightest rounded-2xl p-8 md:p-12">
-      <div class="text-center mb-12">
-        <span class="inline-block px-4 py-1 bg-blue-100 text-primary rounded-full text-sm font-medium mb-3">Prazos</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Carência Contratual</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Conheça os prazos de carência para utilização dos serviços após a contratação do plano.</p>
-      </div>
-      
-      <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-          <thead>
-            <tr class="bg-primary text-white">
-              <th class="py-3 px-4 text-left">Grupos de Procedimentos</th>
-              <th class="py-3 px-4 text-center">Carência Contratual</th>
-              <th class="py-3 px-4 text-center">RC1</th>
-              <th class="py-3 px-4 text-center">RC2</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-t border-gray-200">
-              <td class="py-3 px-4 text-gray-700 font-medium">Urgências/Emergências (Presenciais ou Virtuais)</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-            </tr>
-            <tr class="border-t border-gray-200 bg-gray-50">
-              <td class="py-3 px-4 text-gray-700 font-medium">Atendimentos por telemedicina</td>
-              <td class="py-3 px-4 text-center">30 dias</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-            </tr>
-            <tr class="border-t border-gray-200">
-              <td class="py-3 px-4 text-gray-700 font-medium">Consultas eletivas presenciais</td>
-              <td class="py-3 px-4 text-center">30 dias</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-            </tr>
-            <tr class="border-t border-gray-200 bg-gray-50">
-              <td class="py-3 px-4 text-gray-700 font-medium">Exames ou procedimentos simples</td>
-              <td class="py-3 px-4 text-center">30 dias</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-            </tr>
-            <tr class="border-t border-gray-200">
-              <td class="py-3 px-4 text-gray-700 font-medium">Exames ou procedimentos especiais</td>
-              <td class="py-3 px-4 text-center">180 dias</td>
-              <td class="py-3 px-4 text-center">90 dias</td>
-              <td class="py-3 px-4 text-center">24 horas</td>
-            </tr>
-            <tr class="border-t border-gray-200 bg-gray-50">
-              <td class="py-3 px-4 text-gray-700 font-medium">Internações e Cirurgias Eletivas</td>
-              <td class="py-3 px-4 text-center">180 dias</td>
-              <td class="py-3 px-4 text-center">150 dias</td>
-              <td class="py-3 px-4 text-center">120 dias</td>
-            </tr>
-            <tr class="border-t border-gray-200">
-              <td class="py-3 px-4 text-gray-700 font-medium">Partos a Termo</td>
-              <td class="py-3 px-4 text-center">300 dias</td>
-              <td class="py-3 px-4 text-center">300 dias</td>
-              <td class="py-3 px-4 text-center">300 dias</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <h3 class="font-semibold text-primary text-lg mb-3">RC1 - Critérios</h3>
-          <ul class="text-gray-600 space-y-2">
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Não ter apontamentos de Doenças ou Lesões Preexistentes</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Não ser oriundo de processo de portabilidade</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>IMC máximo de 34</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Idade mínima de 3 anos e máxima de 70 anos</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Não estar em período gestacional</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6">
-          <h3 class="font-semibold text-primary text-lg mb-3">RC2 - Critérios</h3>
-          <ul class="text-gray-600 space-y-2">
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Comprovar permanência mínima de 12 meses em plano de saúde regulamentado</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Não ter apontamentos de Doenças ou Lesões Preexistentes</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>IMC máximo de 30</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Idade mínima de 3 anos e máxima de 70 anos</span>
-            </li>
-            <li class="flex items-start">
-              <i class="fas fa-check-circle text-secondary mt-1 mr-2"></i>
-              <span>Não estar em período gestacional</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção de quem pode aderir -->
-    <section id="aderir" class="scroll-mt-20">
-      <div class="text-center mb-12">
-        <span class="inline-block px-4 py-1 bg-blue-100 text-primary rounded-full text-sm font-medium mb-3">Elegibilidade</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Quem Pode Aderir</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Nossos planos estão disponíveis para diversas categorias profissionais e seus dependentes.</p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 relative">
-              <i class="fas fa-user-tie text-primary"></i>
-              <span class="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-full"></span>
+        <!-- Formulário -->
+        <form id="simulation-form" class="bg-white rounded-xl shadow-md p-6 md:p-8">
+          <!-- Etapa 1: Dados pessoais -->
+          <div class="form-step active" id="step-1">
+            <h3 class="text-xl font-bold text-primary mb-6">Dados Pessoais</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="name" class="form-label">Nome completo</label>
+                <input type="text" id="name" class="form-control" placeholder="Digite seu nome completo" required>
+                <div class="form-error hidden" id="name-error">Por favor, informe seu nome completo</div>
+              </div>
+              
+              <div>
+                <label for="age" class="form-label">Idade</label>
+                <input type="number" id="age" class="form-control" placeholder="Digite sua idade" min="0" max="120" required>
+                <div class="form-error hidden" id="age-error">Por favor, informe uma idade válida</div>
+              </div>
             </div>
-            <h3 class="font-semibold text-primary">AFENAFUP – Servidores Públicos</h3>
-          </div>
-          <p class="text-gray-600 mb-4">Servidores públicos municipais, estaduais e federais.</p>
-          <div class="bg-neutral-lightest p-3 rounded-lg">
-            <p class="text-sm text-gray-600"><strong>Documentação:</strong> Contracheque atual + comprovante de filiação.</p>
-            <p class="text-sm text-gray-600 mt-2"><strong>Taxa associativa:</strong> R$ 5,00 mensal</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 relative">
-              <i class="fas fa-briefcase text-primary"></i>
-              <span class="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-full"></span>
+            
+            <div class="flex justify-end">
+              <button type="button" id="next-1" class="quali-btn">
+                Próximo
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
             </div>
-            <h3 class="font-semibold text-primary">ANPLIA – Profissionais Liberais</h3>
           </div>
-          <p class="text-gray-600 mb-4">Profissionais liberais e microempreendedores individuais (MEI).</p>
-          <div class="bg-neutral-lightest p-3 rounded-lg">
-            <p class="text-sm text-gray-600"><strong>Documentação:</strong> Diploma de nível superior ou carteira do conselho + comprovante de filiação.</p>
-            <p class="text-sm text-gray-600 mt-2"><strong>Taxa associativa:</strong> R$ 5,00 mensal</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 relative">
-              <i class="fas fa-store text-primary"></i>
-              <span class="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-full"></span>
+          
+          <!-- Etapa 2: Escolha do plano -->
+          <div class="form-step" id="step-2">
+            <h3 class="text-xl font-bold text-primary mb-6">Escolha seu Plano</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <!-- Plano Delta -->
+              <div class="plan-card" id="plan-delta" data-plan="delta">
+                <div class="text-center mb-4">
+                  <h4 class="text-lg font-bold text-primary">Delta</h4>
+                  <p class="text-sm text-gray-600">Enfermaria</p>
+                </div>
+                
+                <div class="text-center mb-4">
+                  <p class="price-tag" id="delta-price">R$ 324,90</p>
+                  <p class="text-xs text-gray-500">/mês</p>
+                </div>
+                
+                <div class="text-center">
+                  <button type="button" class="quali-btn-outline w-full select-plan-btn" data-plan="delta">
+                    Selecionar
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Plano Ômega -->
+              <div class="plan-card" id="plan-omega" data-plan="omega">
+                <div class="text-center mb-4">
+                  <h4 class="text-lg font-bold text-primary">Ômega</h4>
+                  <p class="text-sm text-gray-600">Enfermaria Plus</p>
+                </div>
+                
+                <div class="text-center mb-4">
+                  <p class="price-tag" id="omega-price">R$ 355,90</p>
+                  <p class="text-xs text-gray-500">/mês</p>
+                </div>
+                
+                <div class="text-center">
+                  <button type="button" class="quali-btn-outline w-full select-plan-btn" data-plan="omega">
+                    Selecionar
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Plano Sigma -->
+              <div class="plan-card" id="plan-sigma" data-plan="sigma">
+                <div class="text-center mb-4">
+                  <h4 class="text-lg font-bold text-primary">Sigma</h4>
+                  <p class="text-sm text-gray-600">Apartamento</p>
+                </div>
+                
+                <div class="text-center mb-4">
+                  <p class="price-tag" id="sigma-price">R$ 469,90</p>
+                  <p class="text-xs text-gray-500">/mês</p>
+                </div>
+                
+                <div class="text-center">
+                  <button type="button" class="quali-btn-outline w-full select-plan-btn" data-plan="sigma">
+                    Selecionar
+                  </button>
+                </div>
+              </div>
             </div>
-            <h3 class="font-semibold text-primary">ASBEC - Profissionais do Comércio</h3>
-          </div>
-          <p class="text-gray-600 mb-4">Profissionais do comércio ou serviços e empresários do comércio ou serviços.</p>
-          <div class="bg-neutral-lightest p-3 rounded-lg">
-            <p class="text-sm text-gray-600"><strong>Documentação:</strong> Contracheque atual ou CTPS + comprovante de filiação.</p>
-            <p class="text-sm text-gray-600 mt-2"><strong>Taxa associativa:</strong> R$ 20,00 única</p>
-          </div>
-        </div>
-        
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-all">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4 relative">
-              <i class="fas fa-user text-primary"></i>
-              <span class="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-full"></span>
+            
+            <div class="form-error hidden text-center mb-4" id="plan-error">Por favor, selecione um plano para continuar</div>
+            
+            <div class="flex justify-between">
+              <button type="button" id="prev-2" class="quali-btn-outline">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Anterior
+              </button>
+              
+              <button type="button" id="next-2" class="quali-btn">
+                Próximo
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
             </div>
-            <h3 class="font-semibold text-primary">UVA – Autônomos</h3>
           </div>
-          <p class="text-gray-600 mb-4">União dos Vendedores Ambulantes e trabalhadores autônomos.</p>
-          <div class="bg-neutral-lightest p-3 rounded-lg">
-            <p class="text-sm text-gray-600"><strong>Documentação:</strong> Documento do PIS + Cópia da inscrição na previdência social.</p>
-            <p class="text-sm text-gray-600 mt-2"><strong>Taxa associativa:</strong> R$ 5,00 mensal</p>
+          
+          <!-- Etapa 3: Detalhes do plano e dependentes -->
+          <div class="form-step" id="step-3">
+            <h3 class="text-xl font-bold text-primary mb-6">Detalhes do Plano</h3>
+            
+            <!-- Detalhes do plano selecionado -->
+            <div class="bg-neutral-lightest p-6 rounded-lg mb-6">
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                <div>
+                  <h4 class="text-lg font-bold text-primary" id="selected-plan-name">Plano Delta</h4>
+                  <p class="text-sm text-gray-600" id="selected-plan-type">Enfermaria</p>
+                </div>
+                
+                <div class="mt-2 md:mt-0">
+                  <p class="price-tag" id="selected-plan-price">R$ 324,90</p>
+                  <p class="text-xs text-gray-500 text-right">/mês</p>
+                </div>
+              </div>
+              
+              <!-- Hospitais disponíveis -->
+              <div class="mb-4">
+                <h5 class="font-semibold text-primary mb-2">Hospitais Disponíveis:</h5>
+                <div id="hospitals-list" class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <!-- Preenchido dinamicamente via JavaScript -->
+                </div>
+              </div>
+              
+              <!-- Vantagens do plano -->
+              <div>
+                <h5 class="font-semibold text-primary mb-2">Vantagens do Plano:</h5>
+                <div id="benefits-list" class="space-y-1">
+                  <!-- Preenchido dinamicamente via JavaScript -->
+                </div>
+              </div>
+            </div>
+            
+            <!-- Adicionar dependentes -->
+            <div class="mb-6">
+              <h4 class="text-lg font-semibold text-primary mb-4">Dependentes</h4>
+              
+              <div id="dependents-container">
+                <!-- Dependentes serão adicionados aqui -->
+              </div>
+              
+              <button type="button" id="add-dependent" class="quali-btn-outline mt-4">
+                <i class="fas fa-plus mr-2"></i>
+                Adicionar Dependente
+              </button>
+            </div>
+            
+            <div class="flex justify-between">
+              <button type="button" id="prev-3" class="quali-btn-outline">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Anterior
+              </button>
+              
+              <button type="button" id="next-3" class="quali-btn">
+                Próximo
+                <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção de benefícios adicionais -->
-    <section class="bg-neutral-lightest rounded-2xl p-8 md:p-12">
-      <div class="text-center mb-12">
-        <span class="inline-block px-4 py-1 bg-blue-100 text-primary rounded-full text-sm font-medium mb-3">Vantagens Exclusivas</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Benefícios Adicionais</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Além da cobertura médica, oferecemos benefícios exclusivos para nossos clientes.</p>
-      </div>
-      
-      <div class="bg-white rounded-xl shadow-md p-6 md:p-8">
-        <div class="flex flex-col md:flex-row items-center gap-6 mb-6">
-          <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center relative flex-shrink-0">
-            <i class="fas fa-plane text-primary text-3xl"></i>
-            <span class="absolute top-0 right-0 w-5 h-5 bg-secondary rounded-full"></span>
+          
+          <!-- Etapa 4: Resumo e finalização -->
+          <div class="form-step" id="step-4">
+            <h3 class="text-xl font-bold text-primary mb-6">Resumo da Contratação</h3>
+            
+            <div class="bg-neutral-lightest p-6 rounded-lg mb-6">
+              <h4 class="text-lg font-semibold text-primary mb-4">Dados do Titular</h4>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                  <p class="text-sm text-gray-600">Nome:</p>
+                  <p class="font-medium" id="summary-name">João da Silva</p>
+                </div>
+                
+                <div>
+                  <p class="text-sm text-gray-600">Idade:</p>
+                  <p class="font-medium" id="summary-age">35 anos</p>
+                </div>
+                
+                <div>
+                  <p class="text-sm text-gray-600">Plano:</p>
+                  <p class="font-medium" id="summary-plan">Delta - Enfermaria</p>
+                </div>
+                
+                <div>
+                  <p class="text-sm text-gray-600">Valor:</p>
+                  <p class="font-medium" id="summary-price">R$ 570,01</p>
+                </div>
+              </div>
+              
+              <!-- Dependentes -->
+              <div id="summary-dependents-container" class="mb-6">
+                <h4 class="text-lg font-semibold text-primary mb-4">Dependentes</h4>
+                <div id="summary-dependents-list">
+                  <!-- Preenchido dinamicamente via JavaScript -->
+                </div>
+              </div>
+              
+              <!-- Valor total -->
+              <div class="border-t border-gray-300 pt-4">
+                <div class="flex justify-between items-center">
+                  <p class="font-semibold text-primary">Valor Total:</p>
+                  <p class="summary-total" id="summary-total">R$ 570,01</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Termos e condições -->
+            <div class="mb-6">
+              <div class="flex items-start">
+                <input type="checkbox" id="terms" class="mt-1 mr-2" required>
+                <label for="terms" class="text-sm text-gray-600">
+                  Li e concordo com os <a href="#" class="text-primary hover:underline">termos e condições</a> e autorizo o tratamento dos meus dados pessoais conforme a <a href="#" class="text-primary hover:underline">política de privacidade</a>.
+                </label>
+              </div>
+              <div class="form-error hidden" id="terms-error">Você precisa aceitar os termos para continuar</div>
+            </div>
+            
+            <div class="flex justify-between">
+              <button type="button" id="prev-4" class="quali-btn-outline">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Anterior
+              </button>
+              
+              <button type="submit" id="submit-form" class="quali-btn">
+                <span id="submit-text">Finalizar Contratação</span>
+                <span id="submit-loading" class="hidden">
+                  <span class="loading mr-2"></span>
+                  Processando...
+                </span>
+              </button>
+            </div>
           </div>
-          <div>
-            <h3 class="text-xl font-bold text-primary mb-2">AIG Seguros - Cobertura em Viagens</h3>
-            <p class="text-gray-600">Graças à parceria com a AIG Seguros, oferecemos gratuitamente aos beneficiários deste programa uma ampla cobertura para emergências médicas. Este benefício é válido tanto para viagens de lazer quanto para atividades profissionais.</p>
-          </div>
-        </div>
+        </form>
         
-        <div class="overflow-x-auto">
-          <table class="min-w-full bg-white border border-gray-200 rounded-lg">
-            <thead>
-              <tr class="bg-primary text-white">
-                <th class="py-3 px-4 text-left">Vantagens</th>
-                <th class="py-3 px-4 text-center">Delta</th>
-                <th class="py-3 px-4 text-center">Ômega</th>
-                <th class="py-3 px-4 text-center">Sigma</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-t border-gray-200">
-                <td class="py-3 px-4 text-gray-700">Despesas médicas e hospitalares emergenciais em caso de acidente durante viagem nacional</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 30.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 50.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 100.000,00</td>
-              </tr>
-              <tr class="border-t border-gray-200 bg-gray-50">
-                <td class="py-3 px-4 text-gray-700">Despesas médicas e hospitalares emergenciais em caso de doenças súbita durante viagem nacional</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 30.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 50.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 100.000,00</td>
-              </tr>
-              <tr class="border-t border-gray-200">
-                <td class="py-3 px-4 text-gray-700">Remoção médica</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 10.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 15.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 20.000,00</td>
-              </tr>
-              <tr class="border-t border-gray-200 bg-gray-50">
-                <td class="py-3 px-4 text-gray-700">Despesas complementares em caso de acidente</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 1.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 1.000,00</td>
-                <td class="py-3 px-4 text-center font-medium">R$ 1.500,00</td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Mensagem de sucesso -->
+        <div id="success-message" class="hidden bg-green-100 text-green-800 p-6 rounded-lg mt-6 text-center">
+          <i class="fas fa-check-circle text-4xl text-green-500 mb-4"></i>
+          <h3 class="text-xl font-bold mb-2">Contratação Realizada com Sucesso!</h3>
+          <p class="mb-4">Obrigado por escolher a Brasília Saúde. Em breve, nossa equipe entrará em contato para finalizar o processo.</p>
+          <p class="text-sm">Número do protocolo: <span id="protocol-number" class="font-medium"></span></p>
         </div>
-        
-        <p class="text-gray-600 text-sm mt-4 italic">A cobertura começa a partir de uma distância de 200 km da residência do beneficiário e se estende por todo o território nacional.</p>
-      </div>
-    </section>
-
-    <!-- Seção de contratação -->
-    <section id="contratar" class="scroll-mt-20 bg-gradient-to-r from-primary to-primary-light text-white rounded-2xl p-8 md:p-12">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Contratação 100% Online</h2>
-        <p class="mb-6 text-lg opacity-90 max-w-2xl mx-auto">Finalize sua contratação de forma rápida e segura. Escolha a opção que melhor atende às suas necessidades:</p>
-      </div>
-      
-      <div class="flex flex-col md:flex-row gap-6 justify-center max-w-3xl mx-auto">
-        <a href="https://wa.me/5561993598991" target="_blank" class="flex-1 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
-          <i class="fab fa-whatsapp text-2xl"></i>
-          <div class="text-left">
-            <div class="text-sm opacity-90">Atendimento imediato</div>
-            <div>Contratar via WhatsApp</div>
-          </div>
-        </a>
-        
-        <a href="mailto:contato@brasiliasaude.com.br" class="flex-1 bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
-          <i class="far fa-envelope text-2xl"></i>
-          <div class="text-left">
-            <div class="text-sm opacity-70">Resposta em até 24h</div>
-            <div>Solicitar por E-mail</div>
-          </div>
-        </a>
-      </div>
-      
-      <div class="mt-10 text-center">
-        <p class="text-lg font-medium">Prefere atendimento telefônico?</p>
-        <p class="text-2xl font-bold mt-2">(61) 3030-5050</p>
-        <p class="text-sm opacity-80 mt-1">Segunda a sexta, das 8h às 18h</p>
       </div>
     </section>
   </main>
 
   <!-- Botão flutuante -->
-  <a href="#contratar" class="floating-button">
-    <i class="fab fa-whatsapp text-xl mr-1"></i>
-    Contratar Agora
+  <a href="#simulacao" class="floating-button">
+    <i class="fas fa-calculator text-xl mr-1"></i>
+    Simular Agora
   </a>
 
   <!-- Footer -->
@@ -1054,87 +1155,619 @@
 
   <!-- Scripts -->
   <script>
-    // Menu mobile toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      if (mobileMenu.classList.contains('open')) {
-        mobileMenu.style.transform = 'translateX(0)';
-      } else {
-        mobileMenu.style.transform = 'translateX(-100%)';
+    // Dados dos planos
+    const plansData = {
+      delta: {
+        name: "Delta",
+        type: "Enfermaria",
+        basePrice: 324.90,
+        hospitals: [
+          "Hospital Anchieta (Ceilândia e Taguatinga)",
+          "Hospital Santa Helena (Asa Norte)",
+          "Hospital Santa Lúcia (Asa Sul)",
+          "Hospital São Francisco (Ceilândia)"
+        ],
+        benefits: [
+          "Cobertura nacional para urgências e emergências",
+          "Consultas em todas especialidades médicas",
+          "Exames simples e complexos",
+          "Internações em enfermaria",
+          "Cobertura em viagem até R$ 30.000"
+        ]
+      },
+      omega: {
+        name: "Ômega",
+        type: "Enfermaria Plus",
+        basePrice: 355.90,
+        hospitals: [
+          "Hospital Anchieta (Ceilândia e Taguatinga)",
+          "Hospital Santa Helena (Asa Norte)",
+          "Hospital Santa Lúcia (Asa Sul)",
+          "Hospital São Francisco (Ceilândia)",
+          "Hospital Brasília (Águas Claras e Lago Sul)",
+          "Hospital Daher (Lago Sul)"
+        ],
+        benefits: [
+          "Cobertura nacional para urgências e emergências",
+          "Consultas em todas especialidades médicas",
+          "Exames simples e complexos",
+          "Internações em enfermaria",
+          "Acesso a hospitais premium (parcial)",
+          "Cobertura em viagem até R$ 50.000",
+          "Exames especializados inclusos"
+        ]
+      },
+      sigma: {
+        name: "Sigma",
+        type: "Apartamento",
+        basePrice: 469.90,
+        hospitals: [
+          "Hospital Anchieta (Ceilândia e Taguatinga)",
+          "Hospital Santa Helena (Asa Norte)",
+          "Hospital Santa Lúcia (Asa Sul)",
+          "Hospital São Francisco (Ceilândia)",
+          "Hospital Brasília (Águas Claras e Lago Sul)",
+          "Hospital Daher (Lago Sul)",
+          "Sírio-Libanês (Todas as unidades)",
+          "Hospital Santa Marta (Taguatinga)",
+          "Hospital Águas Claras"
+        ],
+        benefits: [
+          "Cobertura nacional para urgências e emergências",
+          "Consultas em todas especialidades médicas",
+          "Exames simples e complexos",
+          "Internações em apartamento privativo",
+          "Acesso completo a hospitais premium",
+          "Cobertura em viagem até R$ 100.000",
+          "Exames especializados inclusos",
+          "Maternidade premium inclusa",
+          "Reembolso para consultas fora da rede"
+        ]
       }
-    });
-    
-    // Comparador de planos
-    const compareBtn = document.getElementById('compare-btn');
-    const comparisonTable = document.getElementById('comparison-table');
-    
-    compareBtn.addEventListener('click', () => {
-      comparisonTable.classList.toggle('hidden');
-      if (!comparisonTable.classList.contains('hidden')) {
-        comparisonTable.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
-    
-    // Tabela de preços
-    const showPricesBtn = document.getElementById('show-prices-btn');
-    const pricesTable = document.getElementById('prices-table');
-    
-    showPricesBtn.addEventListener('click', () => {
-      pricesTable.classList.toggle('hidden');
-      if (!pricesTable.classList.contains('hidden')) {
-        pricesTable.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
-    
-    // Ver mais hospitais
-    const showMoreHospitalsBtn = document.getElementById('show-more-hospitals');
-    
-    showMoreHospitalsBtn.addEventListener('click', () => {
-      alert('Funcionalidade em desenvolvimento. Em breve você poderá ver a lista completa de hospitais credenciados.');
-    });
-    
-    // Smooth scroll para links de âncora
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-          
-          // Fechar menu mobile se estiver aberto
-          if (mobileMenu.classList.contains('open')) {
-            mobileMenu.classList.remove('open');
-            mobileMenu.style.transform = 'translateX(-100%)';
-          }
-        }
-      });
-    });
-    
-    // Animação de entrada para elementos
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('section');
-      
-      elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.3;
-        
-        if (elementPosition < screenPosition) {
-          element.classList.add('animate-fadeIn');
-        }
-      });
     };
     
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', animateOnScroll);
+    // Tabela de preços por faixa etária
+    const priceTable = {
+      delta: {
+        "0-18": 324.90,
+        "19-23": 402.88,
+        "24-28": 439.14,
+        "29-33": 518.19,
+        "34-38": 570.01,
+        "39-43": 644.11,
+        "44-48": 796.01,
+        "49-53": 987.05,
+        "54-58": 1233.81,
+        "59+": 1949.40
+      },
+      omega: {
+        "0-18": 355.90,
+        "19-23": 444.88,
+        "24-28": 533.86,
+        "29-33": 597.92,
+        "34-38": 657.71,
+        "39-43": 723.48,
+        "44-48": 871.96,
+        "49-53": 1116.10,
+        "54-58": 1339.32,
+        "59+": 2135.40
+      },
+      sigma: {
+        "0-18": 469.90,
+        "19-23": 587.38,
+        "24-28": 704.86,
+        "29-33": 789.44,
+        "34-38": 868.38,
+        "39-43": 955.22,
+        "44-48": 1151.26,
+        "49-53": 1473.61,
+        "54-58": 1768.33,
+        "59+": 2819.40
+      }
+    };
+    
+    // Função para obter preço baseado na idade
+    function getPriceByAge(plan, age) {
+      if (age <= 18) return priceTable[plan]["0-18"];
+      if (age <= 23) return priceTable[plan]["19-23"];
+      if (age <= 28) return priceTable[plan]["24-28"];
+      if (age <= 33) return priceTable[plan]["29-33"];
+      if (age <= 38) return priceTable[plan]["34-38"];
+      if (age <= 43) return priceTable[plan]["39-43"];
+      if (age <= 48) return priceTable[plan]["44-48"];
+      if (age <= 53) return priceTable[plan]["49-53"];
+      if (age <= 58) return priceTable[plan]["54-58"];
+      return priceTable[plan]["59+"];
+    }
+    
+    // Formatar preço
+    function formatPrice(price) {
+      return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ');
+    }
+    
+    // Variáveis globais
+    let currentStep = 1;
+    let selectedPlan = null;
+    let dependents = [];
+    let totalPrice = 0;
+    
+    // Elementos DOM
+    const form = document.getElementById('simulation-form');
+    const progressLine = document.getElementById('progress-line');
+    const successMessage = document.getElementById('success-message');
+    
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      // Menu mobile toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+        if (mobileMenu.classList.contains('open')) {
+          mobileMenu.style.transform = 'translateX(0)';
+        } else {
+          mobileMenu.style.transform = 'translateX(-100%)';
+        }
+      });
+      
+      // Tabela de preços
+      const showPricesBtn = document.getElementById('show-prices-btn');
+      const pricesTable = document.getElementById('prices-table');
+      
+      showPricesBtn.addEventListener('click', () => {
+        pricesTable.classList.toggle('hidden');
+        if (!pricesTable.classList.contains('hidden')) {
+          pricesTable.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+      
+      // Comparador de planos
+      const compareBtn = document.getElementById('compare-btn');
+      const comparisonTable = document.getElementById('comparison-table');
+      
+      compareBtn.addEventListener('click', () => {
+        comparisonTable.classList.toggle('hidden');
+        if (!comparisonTable.classList.contains('hidden')) {
+          comparisonTable.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+      
+      // Botões de navegação do formulário
+      document.getElementById('next-1').addEventListener('click', () => validateAndGoToStep(2));
+      document.getElementById('prev-2').addEventListener('click', () => goToStep(1));
+      document.getElementById('next-2').addEventListener('click', () => validateAndGoToStep(3));
+      document.getElementById('prev-3').addEventListener('click', () => goToStep(2));
+      document.getElementById('next-3').addEventListener('click', () => validateAndGoToStep(4));
+      document.getElementById('prev-4').addEventListener('click', () => goToStep(3));
+      
+      // Botões de seleção de plano
+      document.querySelectorAll('.select-plan-btn').forEach(button => {
+        button.addEventListener('click', function() {
+          const plan = this.getAttribute('data-plan');
+          selectPlan(plan);
+        });
+      });
+      
+      // Links de simulação nos cards de planos
+      document.querySelectorAll('[data-plan]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (this.tagName === 'A') {
+            e.preventDefault();
+            const plan = this.getAttribute('data-plan');
+            document.getElementById('simulacao').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+              goToStep(1);
+              // Pré-selecionar o plano na etapa 2
+              selectedPlan = plan;
+            }, 500);
+          }
+        });
+      });
+      
+      // Adicionar dependente
+      document.getElementById('add-dependent').addEventListener('click', addDependent);
+      
+      // Submissão do formulário
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (validateStep(4)) {
+          submitForm();
+        }
+      });
+      
+      // Atualizar preços quando a idade mudar
+      document.getElementById('age').addEventListener('change', function() {
+        updatePricesByAge(this.value);
+      });
+      
+      // Smooth scroll para links de âncora
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          if (this.getAttribute('href').startsWith('#')) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+              });
+              
+              // Fechar menu mobile se estiver aberto
+              if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+                mobileMenu.style.transform = 'translateX(-100%)';
+              }
+            }
+          }
+        });
+      });
+    });
+    
+    // Função para validar e avançar para o próximo passo
+    function validateAndGoToStep(step) {
+      if (validateStep(currentStep)) {
+        goToStep(step);
+      }
+    }
+    
+    // Função para validar o passo atual
+    function validateStep(step) {
+      switch(step) {
+        case 1:
+          const name = document.getElementById('name').value.trim();
+          const age = document.getElementById('age').value;
+          
+          if (!name) {
+            document.getElementById('name-error').classList.remove('hidden');
+            return false;
+          } else {
+            document.getElementById('name-error').classList.add('hidden');
+          }
+          
+          if (!age || age < 0 || age > 120) {
+            document.getElementById('age-error').classList.remove('hidden');
+            return false;
+          } else {
+            document.getElementById('age-error').classList.add('hidden');
+            updatePricesByAge(age);
+          }
+          
+          return true;
+          
+        case 2:
+          if (!selectedPlan) {
+            document.getElementById('plan-error').classList.remove('hidden');
+            return false;
+          } else {
+            document.getElementById('plan-error').classList.add('hidden');
+            updatePlanDetails();
+          }
+          
+          return true;
+          
+        case 3:
+          // Não há validações específicas para o passo 3
+          updateSummary();
+          return true;
+          
+        case 4:
+          const terms = document.getElementById('terms').checked;
+          
+          if (!terms) {
+            document.getElementById('terms-error').classList.remove('hidden');
+            return false;
+          } else {
+            document.getElementById('terms-error').classList.add('hidden');
+          }
+          
+          return true;
+      }
+      
+      return true;
+    }
+    
+    // Função para ir para um passo específico
+    function goToStep(step) {
+      // Esconder todos os passos
+      document.querySelectorAll('.form-step').forEach(el => {
+        el.classList.remove('active');
+      });
+      
+      // Mostrar o passo atual
+      document.getElementById(`step-${step}`).classList.add('active');
+      
+      // Atualizar a barra de progresso
+      document.querySelectorAll('.progress-step').forEach(el => {
+        const stepNum = parseInt(el.getAttribute('data-step'));
+        
+        if (stepNum < step) {
+          el.classList.add('completed');
+          el.classList.remove('active');
+        } else if (stepNum === step) {
+          el.classList.add('active');
+          el.classList.remove('completed');
+        } else {
+          el.classList.remove('active', 'completed');
+        }
+      });
+      
+      // Atualizar a linha de progresso
+      const progressWidth = ((step - 1) / 3) * 100;
+      progressLine.style.width = `${progressWidth}%`;
+      
+      // Atualizar o passo atual
+      currentStep = step;
+    }
+    
+    // Função para selecionar um plano
+    function selectPlan(plan) {
+      // Remover seleção anterior
+      document.querySelectorAll('.plan-card').forEach(card => {
+        card.classList.remove('selected');
+      });
+      
+      // Adicionar seleção ao plano escolhido
+      document.getElementById(`plan-${plan}`).classList.add('selected');
+      
+      // Atualizar plano selecionado
+      selectedPlan = plan;
+      
+      // Esconder mensagem de erro
+      document.getElementById('plan-error').classList.add('hidden');
+    }
+    
+    // Função para atualizar preços baseado na idade
+    function updatePricesByAge(age) {
+      if (!age || age < 0 || age > 120) return;
+      
+      const deltaPrice = getPriceByAge('delta', age);
+      const omegaPrice = getPriceByAge('omega', age);
+      const sigmaPrice = getPriceByAge('sigma', age);
+      
+      document.getElementById('delta-price').textContent = formatPrice(deltaPrice);
+      document.getElementById('omega-price').textContent = formatPrice(omegaPrice);
+      document.getElementById('sigma-price').textContent = formatPrice(sigmaPrice);
+    }
+    
+    // Função para atualizar detalhes do plano selecionado
+    function updatePlanDetails() {
+      if (!selectedPlan) return;
+      
+      const plan = plansData[selectedPlan];
+      const age = document.getElementById('age').value;
+      const price = getPriceByAge(selectedPlan, age);
+      
+      // Atualizar nome e tipo do plano
+      document.getElementById('selected-plan-name').textContent = `Plano ${plan.name}`;
+      document.getElementById('selected-plan-type').textContent = plan.type;
+      
+      // Atualizar preço
+      document.getElementById('selected-plan-price').textContent = formatPrice(price);
+      
+      // Atualizar lista de hospitais
+      const hospitalsList = document.getElementById('hospitals-list');
+      hospitalsList.innerHTML = '';
+      
+      plan.hospitals.forEach(hospital => {
+        const div = document.createElement('div');
+        div.className = 'flex items-start';
+        div.innerHTML = `
+          <i class="fas fa-hospital text-primary mt-1 mr-2"></i>
+          <span class="text-sm">${hospital}</span>
+        `;
+        hospitalsList.appendChild(div);
+      });
+      
+      // Atualizar lista de benefícios
+      const benefitsList = document.getElementById('benefits-list');
+      benefitsList.innerHTML = '';
+      
+      plan.benefits.forEach(benefit => {
+        const div = document.createElement('div');
+        div.className = 'flex items-start';
+        div.innerHTML = `
+          <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+          <span class="text-sm">${benefit}</span>
+        `;
+        benefitsList.appendChild(div);
+      });
+      
+      // Calcular preço total
+      calculateTotalPrice();
+    }
+    
+    // Função para adicionar dependente
+    function addDependent() {
+      const dependentsContainer = document.getElementById('dependents-container');
+      const dependentId = Date.now(); // ID único para o dependente
+      
+      const dependentCard = document.createElement('div');
+      dependentCard.className = 'dependent-card';
+      dependentCard.id = `dependent-${dependentId}`;
+      dependentCard.innerHTML = `
+        <i class="fas fa-times remove-dependent" data-id="${dependentId}"></i>
+        <h5 class="font-semibold text-primary mb-3">Dependente</h5>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-2">
+          <div class="md:col-span-2">
+            <label class="form-label">Nome completo</label>
+            <input type="text" class="form-control dependent-name" placeholder="Nome do dependente">
+          </div>
+          
+          <div>
+            <label class="form-label">Idade</label>
+            <input type="number" class="form-control dependent-age" placeholder="Idade" min="0" max="120" data-id="${dependentId}">
+          </div>
+        </div>
+        
+        <div>
+          <label class="form-label">Parentesco</label>
+          <select class="form-control dependent-relationship">
+            <option value="Cônjuge">Cônjuge</option>
+            <option value="Filho(a)">Filho(a)</option>
+            <option value="Pai/Mãe">Pai/Mãe</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        
+        <div class="mt-3 text-right">
+          <p class="text-sm">Valor: <span class="font-semibold dependent-price" data-id="${dependentId}">R$ 0,00</span></p>
+        </div>
+      `;
+      
+      dependentsContainer.appendChild(dependentCard);
+      
+      // Adicionar evento para remover dependente
+      dependentCard.querySelector('.remove-dependent').addEventListener('click', function() {
+        const id = this.getAttribute('data-id');
+        removeDependent(id);
+      });
+      
+      // Adicionar evento para atualizar preço quando a idade mudar
+      dependentCard.querySelector('.dependent-age').addEventListener('change', function() {
+        const id = this.getAttribute('data-id');
+        const age = this.value;
+        updateDependentPrice(id, age);
+      });
+      
+      // Adicionar dependente ao array
+      dependents.push({
+        id: dependentId,
+        name: '',
+        age: 0,
+        relationship: 'Cônjuge',
+        price: 0
+      });
+    }
+    
+    // Função para remover dependente
+    function removeDependent(id) {
+      // Remover do DOM
+      document.getElementById(`dependent-${id}`).remove();
+      
+      // Remover do array
+      dependents = dependents.filter(dep => dep.id != id);
+      
+      // Recalcular preço total
+      calculateTotalPrice();
+    }
+    
+    // Função para atualizar preço do dependente
+    function updateDependentPrice(id, age) {
+      if (!selectedPlan || !age || age < 0 || age > 120) return;
+      
+      const price = getPriceByAge(selectedPlan, age);
+      
+      // Atualizar preço no DOM
+      document.querySelector(`.dependent-price[data-id="${id}"]`).textContent = formatPrice(price);
+      
+      // Atualizar preço no array
+      const index = dependents.findIndex(dep => dep.id == id);
+      if (index !== -1) {
+        dependents[index].age = age;
+        dependents[index].price = price;
+      }
+      
+      // Recalcular preço total
+      calculateTotalPrice();
+    }
+    
+    // Função para calcular preço total
+    function calculateTotalPrice() {
+      if (!selectedPlan) return;
+      
+      const age = document.getElementById('age').value;
+      const titularPrice = getPriceByAge(selectedPlan, age);
+      
+      // Somar preços dos dependentes
+      const dependentsPrice = dependents.reduce((total, dep) => total + dep.price, 0);
+      
+      // Calcular total
+      totalPrice = titularPrice + dependentsPrice;
+      
+      // Atualizar resumo
+      updateSummary();
+    }
+    
+    // Função para atualizar resumo
+    function updateSummary() {
+      if (!selectedPlan) return;
+      
+      const name = document.getElementById('name').value;
+      const age = document.getElementById('age').value;
+      const plan = plansData[selectedPlan];
+      const price = getPriceByAge(selectedPlan, age);
+      
+      // Atualizar dados do titular
+      document.getElementById('summary-name').textContent = name;
+      document.getElementById('summary-age').textContent = `${age} anos`;
+      document.getElementById('summary-plan').textContent = `${plan.name} - ${plan.type}`;
+      document.getElementById('summary-price').textContent = formatPrice(price);
+      
+      // Atualizar dependentes
+      const summaryDependentsList = document.getElementById('summary-dependents-list');
+      const summaryDependentsContainer = document.getElementById('summary-dependents-container');
+      
+      if (dependents.length === 0) {
+        summaryDependentsContainer.classList.add('hidden');
+      } else {
+        summaryDependentsContainer.classList.remove('hidden');
+        
+        // Atualizar dados dos dependentes no array
+        dependents.forEach(dep => {
+          const dependentElement = document.getElementById(`dependent-${dep.id}`);
+          if (dependentElement) {
+            dep.name = dependentElement.querySelector('.dependent-name').value;
+            dep.age = dependentElement.querySelector('.dependent-age').value;
+            dep.relationship = dependentElement.querySelector('.dependent-relationship').value;
+          }
+        });
+        
+        // Atualizar lista de dependentes no resumo
+        summaryDependentsList.innerHTML = '';
+        
+        dependents.forEach(dep => {
+          const div = document.createElement('div');
+          div.className = 'summary-item';
+          div.innerHTML = `
+            <div>
+              <p class="font-medium">${dep.name || 'Sem nome'}</p>
+              <p class="text-sm text-gray-600">${dep.age || 0} anos - ${dep.relationship}</p>
+            </div>
+            <p class="font-medium">${formatPrice(dep.price)}</p>
+          `;
+          summaryDependentsList.appendChild(div);
+        });
+      }
+      
+      // Atualizar valor total
+      document.getElementById('summary-total').textContent = formatPrice(totalPrice);
+    }
+    
+    // Função para submeter o formulário
+    function submitForm() {
+      // Mostrar loading
+      document.getElementById('submit-text').classList.add('hidden');
+      document.getElementById('submit-loading').classList.remove('hidden');
+      
+      // Simular envio (em produção, aqui seria uma chamada AJAX)
+      setTimeout(() => {
+        // Gerar número de protocolo
+        const protocol = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+        document.getElementById('protocol-number').textContent = protocol;
+        
+        // Esconder formulário e mostrar mensagem de sucesso
+        form.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+        
+        // Rolar para a mensagem de sucesso
+        successMessage.scrollIntoView({ behavior: 'smooth' });
+      }, 2000);
+    }
   </script>
 </body>
 </html>
